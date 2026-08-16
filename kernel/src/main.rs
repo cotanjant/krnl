@@ -73,6 +73,14 @@ pub extern "C" fn _start() -> ! {
         }
     }
 
+    let _ = (   
+        address, 
+        width, 
+        height, 
+        pitch,
+        bytes_per_pixel
+    );
+    
     loop {
         core::hint::spin_loop(); // bunu sonra çıkarmalıyız çünkü bu kasıtlı olarak uyarıları devre dışı bırakır.
     }
