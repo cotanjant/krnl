@@ -66,9 +66,9 @@ pub extern "C" fn _start() -> ! {
             unsafe {
                 let pixel = (address as *mut u8)
                     .add(offset);
-                *pixel = 0xff; // red
-                *pixel.add(1) = 0xff; // green
-                *pixel.add(2) = 0xff; // blue
+                *pixel = 0x00; // blue
+                *pixel.add(1) = 0x00; // green
+                *pixel.add(2) = 0xff; // red
             }
         }
     }
