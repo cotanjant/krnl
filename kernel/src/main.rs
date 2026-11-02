@@ -29,10 +29,26 @@ static LIMINE_BASE_REVISION: [u64; 4] = [
 #[unsafe(link_section = ".requests")]
 static FRAMEBUFFER_REQUEST: FramebufferRequest = FramebufferRequest::new();
 
+/* TODO:
+*  we need 
+    stack traces
+    serial port support
+*/
+
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
-    loop {}
+    // TODO: ADD THE KERNEL PANIC SCREEN! 
+    unsafe {
+        core::arch::asm!("cli");
+
+        // we add this loop to stop cpu from running at %100
+        loop {
+            core::arch::asm!("hlt");
+        }
+    }
 }
+
+// TODO: ADD A PRINT FUNCTION VIA FRAMEBUFFER
 
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
